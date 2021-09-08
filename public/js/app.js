@@ -4020,7 +4020,12 @@ module.exports = {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
-__webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
+__webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js"); // import Alpine from 'alpinejs'
+// window.Alpine = Alpine
+// Alpine.start()
+// document.querySelector('.upload-trigger').addEventListener('click', () => {
+//     document.getElementById('input-imageupload').click()
+// })
 
 /***/ }),
 

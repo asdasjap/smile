@@ -32159,6 +32159,12 @@ input[type="radio"]:checked + label{
   color: #3490DC;
 }
 
+.dashboard-home {
+}
+
+.dashboard-home > div {
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

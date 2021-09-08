@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('guardian_email');
             $table->integer('score')->nullable();
             $table->boolean('isAdmin')->default(false);
+            $table->text('image_profile')->default('default.png');
             $table->rememberToken();
             $table->timestamps();
         });
