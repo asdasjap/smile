@@ -32165,6 +32165,16 @@ input[type="radio"]:checked + label{
 .dashboard-home > div {
 }
 
+.image-error {
+  background: #f55a5a;
+  color: #fff;
+  padding: 1.2rem;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  border-radius: 5px;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

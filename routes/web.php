@@ -27,6 +27,7 @@ Route::post('/exam', [UserController::class, 'editScore'])->middleware(['auth', 
 
 Route::get('/user/settings', [DashboardController::class, 'settingsIndex'])->middleware(['auth', 'examNotTaken'])->name('settings');
 
+Route::patch('/user/{id}/settings', [UserController::class, 'update'])->middleware(['auth', 'examNotTaken']);
 
 // Route::get('/admintest', function () {
 //     return "string";
