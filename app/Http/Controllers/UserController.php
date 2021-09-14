@@ -82,11 +82,11 @@ class UserController extends Controller
         }
         // 0-13 14-26 27-40    
         if(0 < $total && $total < 14) {
-            $score = 1;
+            $score = 'low';
         } elseif(14 < $total && $total < 27) {
-            $score = 2;
+            $score = 'moderate';
         } else {
-            $score = 3;
+            $score = 'high';
         }
         
         $id = auth()->user()->id;

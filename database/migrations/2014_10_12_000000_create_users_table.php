@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('school');
             $table->string('guardian_name');
             $table->string('guardian_email');
-            $table->integer('score')->nullable();
+            $table->string('score')->nullable();
             $table->boolean('isAdmin')->default(false);
             $table->text('image_profile')->default('default.png');
             $table->rememberToken();

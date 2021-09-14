@@ -19,15 +19,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [UserController::class, 'index']);
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'examNotTaken'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'examNotTaken', 'checkQuote'])->name('dashboard');
 
-Route::get('/exam', [QuestionController::class, 'index'])->middleware(['auth', 'examTaken'])->name('exam');
+Route::get('/exam', [QuestionController::class, 'index'])->middleware(['auth', 'examTaken', 'checkQuote'])->name('exam');
 
-Route::post('/exam', [UserController::class, 'editScore'])->middleware(['auth', 'examTaken']);
+Route::post('/exam', [UserController::class, 'editScore'])->middleware(['auth', 'examTaken', 'checkQuote']);
 
-Route::get('/user/settings', [DashboardController::class, 'settingsIndex'])->middleware(['auth', 'examNotTaken'])->name('settings');
+Route::get('/add-quotes', [DashboardController::class, 'getQuote'])->middleware(['auth', 'examNotTaken', 'isAdmin'])->name('getQuote');
 
-Route::patch('/user/{id}/settings', [UserController::class, 'update'])->middleware(['auth', 'examNotTaken']);
+Route::post('/add-quotes', [DashboardController::class, 'addQuotes'])->middleware(['auth', 'examNotTaken', 'isAdmin'])->name('addQuotes');
+
+Route::get('/user/settings', [DashboardController::class, 'settingsIndex'])->middleware(['auth', 'examNotTaken', 'checkQuote'])->name('settings');
+
+Route::patch('/user/{id}/settings', [UserController::class, 'update'])->middleware(['auth', 'examNotTaken', 'checkQuote']);
 
 // Route::get('/admintest', function () {
 //     return "string";

@@ -1,11 +1,11 @@
 
 <x-app-layout>
-
-    <div class="bg-gray-200 flex">
+    <span class="{{session()->has(auth()->user()->email) ? '' : 'hidden' }} quote__today text-white bg-red-300 block text-center"> {{ session(auth()->user()->email) }}</span>
+    <div class="bg-gray-200 flex ">
         <div class="w-64 h-screen bg-gray-800 mt-8 sm:mt-0">
             <div class="flex items-center justify-center py-6">
                 {{-- <img class="h-6" src="https://premium-tailwindcomponents.netlify.app/assets/svg/tailwindcomponent-light.svg"> --}}
-                <p class="text-white uppercase">Smile</p>
+                <p class="text-white uppercase">Smil-e</p>
             </div>
 
             <nav class="py-10">
@@ -32,6 +32,12 @@
                         <span class="mx-4 font-medium">Accounts</span>
                     </a>
                 @endif
+                @if (auth()->user()->isAdmin)
+                    <a class="mt-5 {{ request()->routeIs('getQuote') ? $active : $notActive }}" href="/add-quotes">
+                        <i class="fas fa-quote-right"></i>
+                        <span class="mx-4 font-medium">Add Quotes</span>
+                    </a>
+                @endif
 
                 <a class="mt-5 {{ request()->routeIs('journal') ? $active : $notActive }}" href="#">
                     <i class="far fa-smile-wink"></i>
@@ -54,7 +60,7 @@
 
         </div>
 
-        <div class="w-full bg-gray-200">
+        <div class="w-full bg-gray-200 relative">
             {{-- CONTENT --}}
             {{$slot}}
         </div>

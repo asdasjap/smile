@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Quote;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class DashboardController extends Controller
 {
@@ -14,6 +16,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        
+        
         return view('dashboard.home');  
     }
     /**
@@ -81,6 +85,48 @@ class DashboardController extends Controller
     public function update(Request $request, $id)
     {
         
+    }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getQuote(Request $request)
+    {
+        $quotes = Quote::paginate(5);
+        return view('dashboard.add-quotes')->with('quotes', $quotes);
+    }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function addQuotes(Request $request)
+    {
+        $request->validate([
+            "quote" => "required",
+            "image_quote" => "mimes:jpg,jpeg,webp,png'|required|max:5120" 
+        ]);
+
+        
+        $image = $request->image_quote;
+        $filename = $request->file('image_quote')->getClientOriginalName();
+        $originalName = pathinfo($filename, PATHINFO_FILENAME);
+        $newImageName = time() . '-' . $originalName . '.' . $request->image_quote->extension();
+
+        $img = Image::make($image->getRealPath());
+        $img->resize(600, 600)->save(public_path('images/quotes') . '/' . $newImageName);
+
+        Quote::create(
+            [
+                "quote" => $request->quote,
+                "image_quote" => $newImageName
+            ]
+        );
+    
+        return redirect()->route('getQuote');
     }
 
     /**

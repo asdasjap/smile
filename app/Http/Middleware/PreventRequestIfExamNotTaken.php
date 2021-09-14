@@ -2,9 +2,10 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\User;
+use App\Models\Quote;
 use Closure;
 use Illuminate\Http\Request;
+
 
 class PreventRequestIfExamNotTaken
 {
@@ -20,6 +21,7 @@ class PreventRequestIfExamNotTaken
         if(auth()->user()->score === null) {
             return redirect()->route('exam');
         }
+        
         return $next($request);
         
     }

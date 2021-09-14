@@ -36,7 +36,7 @@
                 <div class="user-data flex justify-center flex-col col-span-3">
                     <h1 class="uppercase font-semibold">name: {{ $user->name }}</h1>
                     <h2 class="mt-3 font-semibold">EMAIL: {{$user->email}}</h2>
-                    <h2 class="mt-3 font-semibold">STRESS LEVEL: {{$user->score}}</h2>
+                    <h2 class="mt-3 font-semibold ">STRESS LEVEL: <span class="{{$user->score}} uppercase bold text-lg">{{$user->score}}</span></h2>
                 </div>
 
                 <form class="py-4 px-5 col-span-6 grid grid-cols-12 gap-5" action="/user/{{$user->id}}/settings" method="POST">

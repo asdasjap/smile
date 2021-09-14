@@ -1,0 +1,12 @@
+.low {
+    color: #ffee00;
+    -webkit-text-stroke: 1px black;
+}
+.moderate {
+    color: #ff9100;
+    -webkit-text-stroke: 1px black;
+}
+.high {
+    color: #ff3300;
+    -webkit-text-stroke: 1px black;
+}

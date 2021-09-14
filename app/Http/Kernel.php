@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'isAdmin' => \App\Http\Middleware\IsAdmin::class,
         'examNotTaken' => \App\Http\Middleware\PreventRequestIfExamNotTaken::class,
         'examTaken' => \App\Http\Middleware\PreventRequestIfExamAlreadyTaken::class,
+        'checkQuote' => \App\Http\Middleware\checkQuote::class,
     ];
 }

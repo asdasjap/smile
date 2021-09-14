@@ -5,4 +5,5 @@
         <div class="mood-logs-container col-span-5 bg-red-400">3</div>
         <div class="recommended-actions-container col-span-7 bg-red-400">4</div>
     </div>
+
 </x-dashboard>

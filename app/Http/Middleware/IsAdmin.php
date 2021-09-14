@@ -21,5 +21,6 @@ class IsAdmin
         if(!auth()->user()->isAdmin) {
             return abort(403);
         }
+        return $next($request);
     }
 }
