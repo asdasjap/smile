@@ -1,6 +1,14 @@
 
 <x-app-layout>
-    <span class="{{session()->has(auth()->user()->email) ? '' : 'hidden' }} quote__today text-white bg-red-300 block text-center"> {{ session(auth()->user()->email) }}</span>
+    <div x-data="{show: false}" >
+        <span  @click="show = true;" class="{{session()->has(auth()->user()->email) ? '' : 'hidden' }} cursor-pointer quote__today text-white bg-red-300 block text-center"> {{ session(auth()->user()->email)->quote }}</span>
+        <div x-show="show" class="image__quote__modal">
+            <img  src="{{ asset("images/quotes/" . session(auth()->user()->email)->image_quote) }}" alt="">
+            <div class="close__modal" @click="show = false;">
+                <i class=" fas fa-times"></i>
+            </div>
+        </div>
+    </div>
     <div class="bg-gray-200 flex ">
         <div class="w-64 h-screen bg-gray-800 mt-8 sm:mt-0">
             <div class="flex items-center justify-center py-6">
@@ -33,7 +41,7 @@
                     </a>
                 @endif
                 @if (auth()->user()->isAdmin)
-                    <a class="mt-5 {{ request()->routeIs('getQuote') ? $active : $notActive }}" href="/add-quotes">
+                    <a class="mt-5 {{ request()->routeIs('getQuote') ? $active : $notActive }}" href="/quotes">
                         <i class="fas fa-quote-right"></i>
                         <span class="mx-4 font-medium">Add Quotes</span>
                     </a>

@@ -105,11 +105,13 @@ class DashboardController extends Controller
      */
     public function addQuotes(Request $request)
     {
-        $request->validate([
-            "quote" => "required",
-            "image_quote" => "mimes:jpg,jpeg,webp,png'|required|max:5120" 
-        ]);
 
+        $request->validate(
+            [
+                "quote" => "required",
+                "image_quote" => "mimes:jpg,jpeg,webp,png'|required|max:5120"
+            ]
+        );
         
         $image = $request->image_quote;
         $filename = $request->file('image_quote')->getClientOriginalName();
@@ -128,6 +130,15 @@ class DashboardController extends Controller
     
         return redirect()->route('getQuote');
     }
+
+
+
+    public function deleteQuotes($id) {
+        Quote::find($id)->delete();
+        return redirect()->route('getQuote');
+    }
+
+
 
     /**
      * Remove the specified resource from storage.

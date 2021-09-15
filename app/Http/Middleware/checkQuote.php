@@ -19,6 +19,7 @@ class checkQuote
      */
     public function handle(Request $request, Closure $next)
     {
+        
         if(auth()->user()->score !== null) {
             if(Cache::has(auth()->user()->email)) {
                 $quoteOfTheDay = Cache::get(auth()->user()->email);
@@ -26,7 +27,7 @@ class checkQuote
                 $quoteOfTheDay = Quote::inRandomOrder()->first();
                 Cache::put(auth()->user()->email, $quoteOfTheDay, now()->addDay());
             }
-            session([auth()->user()->email => $quoteOfTheDay->quote]);
+            session([auth()->user()->email => $quoteOfTheDay]);
         } 
         return $next($request);
     }

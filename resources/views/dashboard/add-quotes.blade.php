@@ -8,13 +8,20 @@
         <div class=" p-6 h-3/6">
             <div class=" w-3/4 mx-auto h-full bg-gray-200 p-4">
                 @foreach ($quotes as $quote)
-                    <div class="mt-4  py-2 cursor-pointer">
-                        - {{ $quote->quote }}
-                        <i class="fas fa-arrow-right ml-2 text-gray-800"></i>
+                    <div class="quote__options mt-4  py-2 cursor-pointer relative overflow-hidden">
+                        <form x-data="{submit: false}" id="form{{ $quote->id }}" x-on:submit="event.preventDefault();" action="/quotes/delete/{{ $quote->id }}" method="post" class=" inline">
+                            @csrf
+                            @method('DELETE')
+                            <span class="quote__trash" @click="$el.submit();">
+                                <i class="far fa-trash-alt"></i>
+                            </span>
+                        </form>
+                        {{ $quote->quote }}
+                        {{-- <i class="fas fa-arrow-right ml-2 text-gray-800"></i> --}}
                     </div>
                 @endforeach
             </div>
-
+            
             {{ $quotes->links() }}
         </div>
 
@@ -23,7 +30,7 @@
                 <i class="text-lg fas fa-times text-white"></i>
             </div>
             <div class="min-h-screen  flex flex-col sm:justify-center items-center pt-6 sm:pt-0 ">
-                <form action="/add-quotes" class="py-6 px-10 bg-gray-200" method="POST" enctype="multipart/form-data">
+                <form action="/quotes/add" class="py-6 px-10 bg-gray-200" method="POST" enctype="multipart/form-data">
                 @csrf
                     <div>
                         <x-label for="quote" :value="__('Quote')" />

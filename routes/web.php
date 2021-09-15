@@ -25,9 +25,11 @@ Route::get('/exam', [QuestionController::class, 'index'])->middleware(['auth', '
 
 Route::post('/exam', [UserController::class, 'editScore'])->middleware(['auth', 'examTaken', 'checkQuote']);
 
-Route::get('/add-quotes', [DashboardController::class, 'getQuote'])->middleware(['auth', 'examNotTaken', 'isAdmin'])->name('getQuote');
+Route::get('/quotes', [DashboardController::class, 'getQuote'])->middleware(['auth', 'examNotTaken', 'isAdmin'])->name('getQuote');
 
-Route::post('/add-quotes', [DashboardController::class, 'addQuotes'])->middleware(['auth', 'examNotTaken', 'isAdmin'])->name('addQuotes');
+Route::post('/quotes/add', [DashboardController::class, 'addQuotes'])->middleware(['auth', 'examNotTaken', 'isAdmin'])->name('addQuotes');
+
+Route::delete('/quotes/delete/{id}', [DashboardController::class, 'deleteQuotes'])->middleware(['auth', 'examNotTaken', 'isAdmin'])->name('addQuotes');
 
 Route::get('/user/settings', [DashboardController::class, 'settingsIndex'])->middleware(['auth', 'examNotTaken', 'checkQuote'])->name('settings');
 
