@@ -31,6 +31,17 @@ Route::post('/quotes/add', [DashboardController::class, 'addQuotes'])->middlewar
 
 Route::delete('/quotes/delete/{id}', [DashboardController::class, 'deleteQuotes'])->middleware(['auth', 'examNotTaken', 'isAdmin'])->name('addQuotes');
 
+
+/**
+ * exercise_table hasMany->exercise_header->hasMany->exercise_steps || exercise_steps->belongsTo->header->belongsTo->exercise
+ */
+
+Route::get('/exercises', function() {
+    return view('dashboard.exercises');
+}
+)->name('exercises');
+
+
 Route::get('/user/settings', [DashboardController::class, 'settingsIndex'])->middleware(['auth', 'examNotTaken', 'checkQuote'])->name('settings');
 
 Route::patch('/user/{id}/settings', [UserController::class, 'update'])->middleware(['auth', 'examNotTaken', 'checkQuote']);

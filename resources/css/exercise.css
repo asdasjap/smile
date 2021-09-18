@@ -1,0 +1,56 @@
+.container__exercise {
+    /* border: 1px solid black; */
+    display: flex;
+}
+
+.container__exercise .left {
+    /* border: 1px solid red; */
+    flex: 1;
+}
+
+
+.container__exercise .right {
+    /* border: 1px solid blue; */
+    flex: 1;
+}
+
+.items .item {
+    overflow: hidden;
+    margin: 2rem 0.5rem;
+    height: 5rem;
+    word-wrap: break-word;
+    box-shadow: 0 1px 7px rgba(0, 0, 0, 0.514);
+}
+
+
+.del {
+    position: relative;
+    left: -10%;
+    background: red;
+    color: #fff;
+    height: 100%;
+    padding: 0 .5rem;
+}
+
+.items .item:hover .del {
+    left : 0;
+}
+
+
+.exercise__name {
+   
+}
+
+
+.form__submit {
+    border: 1px solid black;
+    width: 50%;
+    min-height: 200px;
+}
+
+.add__header,
+.add__step {
+    padding: .5rem;
+    background: red;
+    color: #fff;
+}
